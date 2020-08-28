@@ -169,9 +169,21 @@ function getWinner() {
             console.log(winningHand + " " + playerHand)
 
             if (winningHand == playerHand) {
-                if (j > 0) victoryDance(players[j]);
+                if (j > 0) 
+                {
+                    
+                    victoryDance(players[j],winner[i].hand,winner[i].result);
 
-                alert(players[j].name + " Wins with " + winner[i].result);
+                    playerWins(winner[i].hand,winner[i].result);
+                
+                }
+                if(j==0)
+                {
+
+                    playerWins(winner[i].hand,winner[i].result);
+                }
+
+                //alert(players[j].name + " Wins with " + winner[i].result);
             }
             else {
 
@@ -182,7 +194,7 @@ function getWinner() {
     }
 }
 
-function victoryDance(player) {
+function victoryDance(player,hand,method) {
 
 
     var playerImg = document.querySelector("#" + player.id);
@@ -191,7 +203,35 @@ function victoryDance(player) {
 
     playerImg.parentElement.setAttribute("class","col-4 boxFF");
 
+    var h5win = document.createElement("h5");
+    h5win.textContent = "Winner - "+capitalize(method);
+    
+    var p = document.createElement("p");
+
+
+    parseHand(hand,p);
+
+    playerImg.parentElement.appendChild(h5win);
+    playerImg.parentElement.appendChild(p);
 }
+
+function playerWins(hand,method)
+{
+
+    var controlPanel = document.querySelector("#control-panel");
+
+    var h5win = document.createElement("h5");
+    h5win.textContent = "Winner - "+capitalize(method);
+    
+    var p = document.createElement("p");
+
+
+    parseHand(hand,p);
+
+    controlPanel.appendChild(h5win);
+    controlPanel.appendChild(p);
+}
+
 
 function youLose(player) {
 
@@ -201,6 +241,58 @@ function youLose(player) {
     playerImg.setAttribute("src", player.lose);
 
 }
+
+function parseHand(hand,p) {
+
+for (var i=0; i < hand.length; i++)
+{
+
+    if(hand[i]=="D")
+    {
+
+        var img = document.createElement("img");
+        img.setAttribute("src", "assets/images/diamond.svg")
+        img.setAttribute("width","12");
+        img.setAttribute("heigh","12");
+        p.appendChild(img);
+    }
+    else if(hand[i]=="C") {
+       
+        var img = document.createElement("img");
+        img.setAttribute("src", "assets/images/club.svg")
+        img.setAttribute("width","12");
+        img.setAttribute("heigh","12");
+        p.appendChild(img);
+    }
+    
+    else if(hand[i]=="H") {
+
+        var img = document.createElement("img");
+        img.setAttribute("src", "assets/images/heart.svg")
+        img.setAttribute("width","12");
+        img.setAttribute("heigh","12");
+        p.appendChild(img);
+    
+    }
+    else if(hand[i]=="S") {
+        
+        var img = document.createElement("img");
+        img.setAttribute("src", "assets/images/spade.svg")
+        img.setAttribute("width","12");
+        img.setAttribute("heigh","12");
+        p.appendChild(img);
+    }
+    else {
+
+        var span = document.createElement("span");
+        span.textContent = hand[i];
+        p.appendChild(span);
+    }
+    
+    }
+}
+
+
 
 function displayCards() {
 
@@ -289,6 +381,7 @@ function setupControlPanel(player) {
     var control = document.createElement("div");
 
     control.setAttribute("class", "col-5 ml-5 rounded p-2 shadow border");
+    control.setAttribute("id","control-panel");
 
     player.appendChild(control);
 
@@ -302,8 +395,16 @@ function setupControlPanel(player) {
     foldBtn.setAttribute("class", "btn btn-danger ml-2");
     foldBtn.textContent = "Fold";
 
+    var enterName = document.createElement("input");
+    
+    enterName.setAttribute("class","form-control mt-3 mb-3");
+    enterName.setAttribute("value","Enter Your Name");
+
+
+    
     control.appendChild(callBtn);
     control.appendChild(foldBtn);
+    control.append(enterName);
 
 
 }
@@ -332,7 +433,9 @@ function capitalize(string) {
 
 
    
-        return string.charAt(0).toUpperCase() + string.slice(1);
+        var win = string.charAt(0).toUpperCase() + string.slice(1);
+
+        return win.split("_").join(" ");
   
 }
 function callHandler(event) {

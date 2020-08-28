@@ -1,4 +1,4 @@
-h1,h4{
+h1,h4,h5{
 
     font-family: 'Monoton', cursive;
 
@@ -29,9 +29,16 @@ margin-bottom:3px;
     color:yellow;
 }
 
-.boxFF h4{
+.boxFF h4,h5{
 
     color:yellowgreen;
+}
+
+p{
+    max-width: 200px;
+    border: 2px solid yellowgreen;
+    border-radius: 5px;
+    padding-left:10px;
 }
 
 .table2{
@@ -43,14 +50,6 @@ margin-bottom:3px;
     height:350px;
     display: flex;
     align-items: center;
-}
-
-.banner{
-
-    background-image: url("assets/images/vegas.jpg");
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-position: 50% 50%;
 }
 
 
@@ -86,12 +85,12 @@ margin-bottom:3px;
     animation-delay: -5s;
     top:-10px;
     left:-14px;
-	background-color: #33bfd8;
+	background-color:#7e066a;
 	clip-path: polygon(-50 -50, calc(100% - (33.3333333333px)) calc(0% + (33.3333333333px)), 100% 100%, calc(0% + (33.3333333333px)) calc(100% - (33.3333333333px)));
 }
 .box:before {
     left:-14px;
-	background-color: #AA4465;
+	background-color: #32b6eb;
 	  clip-path: polygon(calc(0% + (33.3333333333px)) calc(0% + (33.3333333333px)), 100% 0, calc(100% - (33.3333333333px)) calc(100% - (33.3333333333px)), 0 100%);
 }
 
@@ -142,12 +141,12 @@ margin-bottom:3px;
     animation-delay: -0.1s;
     top:-10px;
     left:-14px;
-	background-color: #33bfd8;
+	background-color: #067e20;
 	clip-path: polygon(-50 -50, calc(100% - (33.3333333333px)) calc(0% + (33.3333333333px)), 100% 100%, calc(0% + (33.3333333333px)) calc(100% - (33.3333333333px)));
 }
 .boxFF:before {
     left:-14px;
-	background-color: #AA4465;
+	background-color: #d89633 ;
 	  clip-path: polygon(calc(0% + (33.3333333333px)) calc(0% + (33.3333333333px)), 100% 0, calc(100% - (33.3333333333px)) calc(100% - (33.3333333333px)), 0 100%);
 }
 
