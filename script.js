@@ -210,7 +210,7 @@ function displayCards() {
     for (var i = 0; i < communityCards.length; i++) {
 
         var card = document.createElement("div");
-        card.setAttribute("class", "col-2 mr-3 bg-light rounded poker-card p-2 shadow");
+        card.setAttribute("class", "col-2 mr-2 bg-light rounded poker-card p-2 shadow");
         card.setAttribute("id", "card" + (i + 1))
 
         var value = communityCards[i];
@@ -251,7 +251,7 @@ function displayPlayerCards() {
     for (var i = 0; i < pc1.cards.length; i++) {
 
         var card = document.createElement("div");
-        card.setAttribute("class", "col-2 mr-3 bg-light rounded poker-card p-2 shadow");
+        card.setAttribute("class", "col-2 mr-1 ml-1 bg-light rounded poker-card p-2 shadow");
 
         var value = pc1.cards[i];
         var img = document.createElement("img");
