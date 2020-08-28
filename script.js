@@ -4,9 +4,24 @@ var HHDeck = ["2H","3H","4H","5H", "6H","7H","8H","9H","10H","JH","QH","KH","AH"
 var DDDeck = ["2D","3D","4D","5D", "6D","7D","8D","9D","10D","JD","QD","KD","AD"];
 
 var pc1 = {cards:[],name:"Marco Evangelista"};
-var pc2 = {cards:[],name:"Phil Hellmuth"};
-var pc3 = {cards:[],name:"Mel Gibson"};
-var pc4 = {cards:[],name:"Asian Andy"};
+
+var pc2 = {cards:[],id:"hellmuth",name:"Phil Hellmuth",
+lose: 'https://media.giphy.com/media/l1nC2TnAJgx57Yb9uK/giphy.gif',
+win: 'https://media.giphy.com/media/VJTgiFNmYGzo7l5Giv/giphy.gif',
+default: 'https://media.giphy.com/media/MDguJxB4FKolPeYT11/giphy.gif'
+
+};
+var pc3 = {cards:[],id:"gibson",name:"Mel Gibson",
+lose: 'https://media.giphy.com/media/lh0dM2Q90ef1m/giphy.gif',
+win: 'https://media.giphy.com/media/nGlhhVfcw561i/giphy.gif',
+default: 'https://media.giphy.com/media/xT9DPlAUKTl1GeZjC8/giphy.gif'
+
+};
+var pc4 = {cards:[],id:"negreanu",name:"Daniel Negreanu",
+win:'https://thumbs.gfycat.com/GroundedRegularIslandcanary.webp',
+default: 'https://thumbs.gfycat.com/SleepyPracticalAntelope.webp',
+lose: 'https://media.giphy.com/media/l0K4myFrV5voJTl5u/giphy.gif'
+}
 
 var players = [pc1,pc2,pc3,pc4];
 
@@ -157,10 +172,39 @@ function getWinner(){
 
                 console.log(winningHand+" "+playerHand)
 
-                if(winningHand == playerHand) alert(players[j].name +" Wins with "+winner[i].result);
+                if(winningHand == playerHand)
+                {
+                    if(j>0) victoryDance(players[j]);
+
+                alert(players[j].name +" Wins with "+winner[i].result);
+                }
+                else{
+
+                    if(j>0) youLose(players[j]);
+                }
 
             }
     }
+}
+
+function victoryDance(player)
+{
+
+
+   var playerImg = document.querySelector("#"+player.id);
+
+   playerImg.setAttribute("src",player.win);
+
+}
+
+function youLose(player)
+{
+
+
+   var playerImg = document.querySelector("#"+player.id);
+
+   playerImg.setAttribute("src",player.lose);
+
 }
 
 function displayCards()
