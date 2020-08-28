@@ -12,14 +12,14 @@ default: 'https://media.giphy.com/media/MDguJxB4FKolPeYT11/giphy.gif'
 
 };
 var pc3 = {cards:[],id:"gibson",name:"Mel Gibson",
-lose: 'https://media.giphy.com/media/lh0dM2Q90ef1m/giphy.gif',
+lose: 'https://media.giphy.com/media/m12GiqBQywgbS/giphy.gif',
 win: 'https://media.giphy.com/media/nGlhhVfcw561i/giphy.gif',
 default: 'https://media.giphy.com/media/xT9DPlAUKTl1GeZjC8/giphy.gif'
 
 };
 var pc4 = {cards:[],id:"negreanu",name:"Daniel Negreanu",
 win:'https://thumbs.gfycat.com/GroundedRegularIslandcanary.webp',
-default: 'https://thumbs.gfycat.com/SleepyPracticalAntelope.webp',
+default: 'https://media.giphy.com/media/cs2gUoFj4m67UGptiD/giphy.gif',
 lose: 'https://media.giphy.com/media/l0K4myFrV5voJTl5u/giphy.gif'
 }
 
