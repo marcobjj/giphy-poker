@@ -189,6 +189,8 @@ function victoryDance(player) {
 
     playerImg.setAttribute("src", player.win);
 
+    playerImg.parentElement.setAttribute("class","col-4 boxFF");
+
 }
 
 function youLose(player) {

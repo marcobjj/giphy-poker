@@ -1,3 +1,9 @@
+h1,h4{
+
+    font-family: 'Monoton', cursive;
+
+}
+
 .poker-card {
 
     min-width:100px;
@@ -11,11 +17,21 @@
 max-width:150px;
 max-height:100px;
 
-border: 3px solid black;
+border: 3px solid white;
 border-radius: 8px;
 
 margin-bottom:3px;
 
+}
+
+.box h4{
+
+    color:yellow;
+}
+
+.boxFF h4{
+
+    color:yellowgreen;
 }
 
 
@@ -60,6 +76,7 @@ margin-bottom:3px;
 	  clip-path: polygon(calc(0% + (33.3333333333px)) calc(0% + (33.3333333333px)), 100% 0, calc(100% - (33.3333333333px)) calc(100% - (33.3333333333px)), 0 100%);
 }
 
+/*
 .box:hover:after{
 	animation-delay: -0.1s;
 }
@@ -68,6 +85,52 @@ margin-bottom:3px;
           animation-duration: 0.2s;
 }
 
+*/
+
+
+
+
+
+.boxFF{
+	width: 150px; height: 100px;
+	position: relative;
+/*	box-shadow: 10px 10px 42px 0 rgba(0,0,0,0.75);*/
+}
+.boxFF:after, .boxFF:before{
+	/*mix-blend-mode:multiply;*/
+	filter:none;
+	z-index: -1;
+	content:'';
+	width:calc(150px + (50px * 2));
+	height:calc(50px + (50px * 2));
+	position: absolute;
+	display: block;
+	animation: border 0.2s infinite;
+	transform:translateX(-25px) translateY(-25px);
+}
+@keyframes border {
+  0%, 100% {
+    -webkit-clip-path: polygon(0 0, calc(100% - (33.3333333333px)) calc(0% + (33.3333333333px)), 100% 100%, calc(0% + (33.3333333333px)) calc(100% - (33.3333333333px)));
+            clip-path: polygon(0 0, calc(100% - (33.3333333333px)) calc(0% + (33.3333333333px)), 100% 100%, calc(0% + (33.3333333333px)) calc(100% - (33.3333333333px)));
+  }
+  50% {
+    -webkit-clip-path: polygon(calc(0% + (33.3333333333px)) calc(0% + (33.3333333333px)), 100% 0, calc(100% - (33.3333333333px)) calc(100% - (33.3333333333px)), 0 100%);
+            clip-path: polygon(calc(0% + (33.3333333333px)) calc(0% + (33.3333333333px)), 100% 0, calc(100% - (33.3333333333px)) calc(100% - (33.3333333333px)), 0 100%);
+  }
+}
+
+.boxFF:after{
+    animation-delay: -0.1s;
+    top:-10px;
+    left:-14px;
+	background-color: #33bfd8;
+	clip-path: polygon(-50 -50, calc(100% - (33.3333333333px)) calc(0% + (33.3333333333px)), 100% 100%, calc(0% + (33.3333333333px)) calc(100% - (33.3333333333px)));
+}
+.boxFF:before {
+    left:-14px;
+	background-color: #AA4465;
+	  clip-path: polygon(calc(0% + (33.3333333333px)) calc(0% + (33.3333333333px)), 100% 0, calc(100% - (33.3333333333px)) calc(100% - (33.3333333333px)), 0 100%);
+}
 
 
 
