@@ -41,7 +41,7 @@ var rounds = {
         if (this.round == "pre-flop") this.round = "flop";
         else if (this.round == "flop") this.round = "turn";
         else if (this.round == "turn") this.round = "river";
-        else if (this.round == "river") getWinner();
+        else if (this.round == "river") this.round = getWinner();
         else if (this.round == "") this.round = "pre-flop";
 
         return this.round;
@@ -152,6 +152,7 @@ function callAPI() {
 function setWinner(data) {
 
     winner = data.winners;
+  
 
 }
 
@@ -174,7 +175,7 @@ function getWinner() {
                     
                     victoryDance(players[j],winner[i].hand,winner[i].result);
 
-                    playerWins(winner[i].hand,winner[i].result);
+                   
                 
                 }
                 if(j==0)
@@ -192,6 +193,8 @@ function getWinner() {
 
         }
     }
+
+    return "winner";
 }
 
 function victoryDance(player,hand,method) {
@@ -205,8 +208,11 @@ function victoryDance(player,hand,method) {
 
     var h5win = document.createElement("h5");
     h5win.textContent = "Winner - "+capitalize(method);
+    h5win.setAttribute("id",player.id+"-winner");
     
     var p = document.createElement("p");
+    p.setAttribute("id",player.id+"-hand")
+
 
 
     parseHand(hand,p);
@@ -339,6 +345,7 @@ function displayCards() {
 function displayPlayerCards() {
 
     var player = document.querySelector("#player");
+    player.innerHTML = "";
 
     for (var i = 0; i < pc1.cards.length; i++) {
 
@@ -398,12 +405,18 @@ function setupControlPanel(player) {
     var enterName = document.createElement("input");
     
     enterName.setAttribute("class","form-control mt-3 mb-3");
-    enterName.setAttribute("value","Enter Your Name");
+
+    if(localStorage.getItem("enter-your-name")) enterName.setAttribute("value", localStorage.getItem("enter-your-name")) ;
+    else enterName.setAttribute("value","Enter Your Name");
+
+
+
+    enterName.addEventListener("keyup",captureNameHandler);
 
 
     
     control.appendChild(callBtn);
-    control.appendChild(foldBtn);
+   // control.appendChild(foldBtn);
     control.append(enterName);
 
 
@@ -438,8 +451,56 @@ function capitalize(string) {
         return win.split("_").join(" ");
   
 }
+
+function reset(){
+
+    rounds.round = "";
+    fullDeck = [];
+    pc1.cards = [];
+    pc2.cards = [];
+    pc3.cards = [];
+    pc4.cards = [];
+
+    communityCards = [];
+
+  
+
+    if(document.querySelector("#negreanu-hand")) document.querySelector("#negreanu-hand").remove();
+    if(document.querySelector("#gibson-hand")) document.querySelector("#gibson-hand").remove();
+    if(document.querySelector("#hellmuth-hand")) document.querySelector("#hellmuth-hand").remove();
+
+    if(document.querySelector("#negreanu-winner")) document.querySelector("#negreanu-winner").remove();
+    if(document.querySelector("#gibson-winner")) document.querySelector("#gibson-winner").remove();
+    if(document.querySelector("#hellmuth-winner")) document.querySelector("#hellmuth-winner").remove();
+
+    document.querySelector("#negreanu").parentElement.setAttribute("class","col-4 box");
+    document.querySelector("#hellmuth").parentElement.setAttribute("class","col-4 box");
+    document.querySelector("#gibson").parentElement.setAttribute("class","col-4 box");
+
+    document.querySelector("#negreanu").setAttribute("src",pc4.default);
+    document.querySelector("#gibson").setAttribute("src",pc3.default);
+    document.querySelector("#hellmuth").setAttribute("src",pc2.default);
+
+
+    distribute();
+    
+}
+
+function captureNameHandler(event)
+{
+
+    console.log(this.value);
+
+    localStorage.setItem("enter-your-name",this.value);
+}
 function callHandler(event) {
 
+
+    if(rounds.round == "winner")
+    {
+        reset();
+        return;
+    }
     displayRound();
 
 }
